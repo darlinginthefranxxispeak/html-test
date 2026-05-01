@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* This is your outer box */
+        .game-container {
+            width: 638px;
+            height: 356px;
+            overflow: hidden; /* This acts like a window, hiding everything outside */
+            position: relative;
+            border: 2px solid #000;
+            background: #000;
+        }
+
+        /* This is the "Zoom" effect */
+        iframe {
+            width: 1280px; /* High width to keep the layout desktop-style */
+            height: 2000px; /* High height to capture the whole page */
+            
+            position: absolute;
+
+            /* ADJUST THESE THREE VALUES TO "ZOOM" */
+            /* Scale 1.7 makes the content look much larger */
+            /* Translate moves the page so the game aligns with your box */
+            transform: scale(1.7) translate(-185px, -110px);
+            
+            transform-origin: 0 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <iframe 
+            src="https://garula.itch.io/the-freak-circus" 
+            scrolling="no">
+        </iframe>
+    </div>
+
+</body>
+</html>
