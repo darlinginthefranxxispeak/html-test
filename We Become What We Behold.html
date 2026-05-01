@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Become What We Behold</title>
+    <style>
+        /* This removes margins and prevents the page from scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* This makes the game box take up 100% of the visible window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific link you found -->
+    <iframe 
+        id="game-box"
+        src="https://html-classic.itch.zone/html/300364/index.html?v1542781840" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // This ensures the keyboard works for the game as soon as you click.
+        window.onclick = function() {
+            document.getElementById('game-box').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-box').focus();
+        };
+    </script>
+
+</body>
+</html>
