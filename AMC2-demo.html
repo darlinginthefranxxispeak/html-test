@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomalous Coffee Machine 2 Demo</title>
+    <style>
+        /* Removes all margins and prevents scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Dark background keeps it clean */
+        }
+
+        /* Makes the game window fill the entire screen */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the direct link you found -->
+    <iframe 
+        id="game-box"
+        src="https://html-classic.itch.zone/html/16132934/index.html" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           This script ensures the game gets your keyboard focus 
+           immediately so you can use WASD or Arrow Keys without issues.
+        */
+        window.onclick = function() {
+            document.getElementById('game-box').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-box').focus();
+        };
+    </script>
+
+</body>
+</html>
