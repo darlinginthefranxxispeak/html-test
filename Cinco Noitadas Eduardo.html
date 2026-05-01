@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Noches at Eduardo</title>
+    <style>
+        /* Removes browser borders and prevents scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Black background to match the game screen */
+        }
+
+        /* Forces the game window to fill every pixel of the browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific direct link you provided -->
+    <iframe 
+        id="game-player"
+        src="https://html-classic.itch.zone/html/15895537/index.html" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           Keyboard Fix: This script ensures that the game "grabs" your 
+           keyboard focus as soon as you click anywhere on the page.
+        */
+        window.onclick = function() {
+            document.getElementById('game-player').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-player').focus();
+        };
+    </script>
+
+</body>
+</html>
