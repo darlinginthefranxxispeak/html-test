@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Google Docs - Research Paper</title>
-    <style>
-        body { background: #f3f3f3; font-family: Arial; text-align: center; padding-top: 50px; }
-        .btn { padding: 20px; background: #4285f4; color: white; border: none; cursor: pointer; border-radius: 5px; }
-    </style>
+    <title>Academic Resource</title>
 </head>
 <body>
-    <h1>Unit 4: Advanced Bibliography</h1>
-    <p>Click below to open the research resources.</p>
-    <button class="btn" onclick="openGame()">Open Resource</button>
+    <button onclick="launch()">View Bibliography</button>
 
     <script>
-    function openGame() {
-        var win = window.open();
-        var url = "https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857";
-        var iframe = win.document.createElement('iframe');
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.border = "none";
-        iframe.style.position = "fixed";
-        iframe.style.top = "0";
-        iframe.style.left = "0";
-        iframe.src = url;
-        win.document.body.appendChild(iframe);
-        win.document.body.style.margin = "0";
+    function launch() {
+        const gameUrl = "https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857";
+        const html = `
+            <html>
+            <body style="margin:0;overflow:hidden">
+                <iframe src="${gameUrl}" style="width:100vw;height:100vh;border:none;"></iframe>
+            </body>
+            </html>`;
+        
+        const blob = new Blob([html], {type: 'text/html'});
+        const blobUrl = URL.createObjectURL(blob);
+        window.location.href = blobUrl;
     }
     </script>
 </body>
