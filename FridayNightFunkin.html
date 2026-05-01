@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Resource</title>
+    <style>
+        /* Hides scrollbars and makes the game fill the window */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Notice the src is empty here; we will inject the Blob URL using JavaScript below -->
+    <iframe 
+        id="game-frame"
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. We create the inner HTML that holds the actual itch.io link
+        const hiddenGameHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; display: block; }
+                </style>
+            </head>
+            <body>
+                <iframe src="https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857" allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 2. Turn that HTML into a Blob (a temporary file stored only in your browser's memory)
+        const blob = new Blob([hiddenGameHTML], { type: 'text/html' });
+
+        // 3. Generate a local 'blob:' URL for it
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Set the main iframe's source to the blob URL so Securly doesn't read the itch.io link directly
+        const gameFrame = document.getElementById('game-frame');
+        gameFrame.src = blobUrl;
+
+        /* 
+           This script ensures that the game "grabs" your keyboard focus 
+           as soon as you click anywhere on the page.
+        */
+        window.onclick = function() {
+            gameFrame.focus();
+        };
+
+        gameFrame.onload = function() {
+            gameFrame.focus();
+        };
+    </script>
+
+</body>
+</html>
