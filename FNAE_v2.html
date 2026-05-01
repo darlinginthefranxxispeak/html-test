@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Nights At Epstein Remastered</title>
+    <style>
+        /* This ensures the game fills the entire browser window */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Dark background to keep focus on the game */
+        }
+
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific URL you found -->
+    <iframe 
+        id="game-player"
+        src="https://html-classic.itch.zone/html/17128544/New folder/index.html?v=1775921754" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // This script helps the game "capture" your keyboard input 
+        // as soon as you click on the page.
+        window.onclick = function() {
+            document.getElementById('game-player').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-player').focus();
+        };
+    </script>
+
+</body>
+</html>
