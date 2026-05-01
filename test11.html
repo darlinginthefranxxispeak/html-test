@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Freak Circus - Full Screen</title>
+    <style>
+        /* Removes all margins and scrollbars from the browser */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* This is the container box set to your new dimensions (999x644) */
+        .game-window {
+            width: 999px;
+            height: 644px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            
+            /* THIS FORCES THE BOX TO STRETCH TO FILL YOUR ENTIRE SCREEN */
+            transform-origin: top left;
+            transform: scale(calc(100vw / 999), calc(100vh / 644));
+        }
+
+        /* This moves the actual website inside that window to find the game */
+        iframe {
+            position: absolute;
+            
+            /* AIMING SETTINGS */
+            top: -460px;  /* Adjust this to move the game UP or DOWN */
+            left: -100px; /* Adjust this to move the game LEFT or RIGHT */
+            
+            width: 1250px; /* Base width of the source website */
+            height: 2000px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-window">
+        <iframe 
+            src="https://thefreakcircusgame.com/the-freak-circus/" 
+            scrolling="no">
+        </iframe>
+    </div>
+
+</body>
+</html>
