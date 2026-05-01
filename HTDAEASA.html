@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How TO Date an Entity and Stay Alive</title>
+    <style>
+        /* This hides all the browser edges and the scrollbar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* This makes the game container fill your whole screen */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific link you found -->
+    <iframe 
+        id="game-window"
+        src="https://html-classic.itch.zone/html/17362678/index.html?v=1777542245" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           This script makes sure that as soon as you click the window, 
+           the game "grabs" your keyboard so you can play immediately 
+           without having to click the game box first.
+        */
+        window.onclick = function() {
+            document.getElementById('game-window').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-window').focus();
+        };
+    </script>
+
+</body>
+</html>
