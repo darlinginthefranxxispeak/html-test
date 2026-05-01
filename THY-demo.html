@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Viewer - Fullscreen</title>
+    <style>
+        /* This hides all the website clutter and makes the game the only thing visible */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Black background to match the game screen */
+        }
+
+        /* Forces the game box to fill your entire browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the direct source link you provided -->
+    <iframe 
+        id="game-frame"
+        src="https://html-classic.itch.zone/html/14007573-1629712/index.html?v=1776846988" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           This script ensures that your keyboard is connected to the game 
+           immediately so that the controls work without having to 
+           manually click inside the box.
+        */
+        window.onclick = function() {
+            document.getElementById('game-frame').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-frame').focus();
+        };
+    </script>
+
+</body>
+</html>
