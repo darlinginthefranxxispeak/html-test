@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Freak Circus - Player</title>
+    <title>The Freak Circus</title>
     <style>
         /* This hides scrollbars and makes the game fill the window */
         body, html {
@@ -25,12 +25,52 @@
 </head>
 <body>
 
-    <!-- This uses the direct link you found -->
+    <!-- Notice the src is empty here; we will inject the Blob URL using JavaScript below -->
     <iframe 
-        src="https://html-classic.itch.zone/html/16572088/index.html?v=1771780207" 
+        id="game-frame"
         allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
         allowfullscreen="true">
     </iframe>
+
+    <script>
+        // 1. We create the inner HTML that holds the actual itch.io link
+        const hiddenGameHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; display: block; }
+                </style>
+            </head>
+            <body>
+                <iframe src="https://html-classic.itch.zone/html/16572088/index.html?v=1771780207" allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 2. Turn that HTML into a Blob (a temporary file stored only in your browser's memory)
+        const blob = new Blob([hiddenGameHTML], { type: 'text/html' });
+
+        // 3. Generate a local 'blob:' URL for it
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Set the main iframe's source to the blob URL so Securly doesn't read the itch.io link directly
+        const gameFrame = document.getElementById('game-frame');
+        gameFrame.src = blobUrl;
+
+        /* 
+           This script makes sure that as soon as you click the window, 
+           the game "grabs" your keyboard so you can play immediately.
+        */
+        window.onclick = function() {
+            gameFrame.focus();
+        };
+
+        gameFrame.onload = function() {
+            gameFrame.focus();
+        };
+    </script>
 
 </body>
 </html>
