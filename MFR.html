@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Femboy Roommate Demo</title>
+    <style>
+        /* This removes all the browser margins and hides scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Keeps the background black while the demo loads */
+        }
+
+        /* This forces the game iframe to fill the entire browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific link for the Roommate Demo -->
+    <iframe 
+        id="game-frame"
+        src="https://html-classic.itch.zone/html/12773276/Roommate-Demo-web/index.html" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           This script ensures that the game "grabs" your keyboard focus 
+           as soon as you click anywhere on the page, which is 
+           important for controlling the character.
+        */
+        window.onclick = function() {
+            document.getElementById('game-frame').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-frame').focus();
+        };
+    </script>
+
+</body>
+</html>
