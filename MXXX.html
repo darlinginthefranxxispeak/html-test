@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster XXXperiment</title>
+    <style>
+        /* Removes browser margins and stops the page from scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Keeps the background black while loading */
+        }
+
+        /* Forces the game window to fill every pixel of the browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific direct source link you found -->
+    <iframe 
+        id="game-container"
+        src="https://html-classic.itch.zone/html/7804390/Monster_XXXperiment-v0.1.8.Public-web/index.html?v=1732313647" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           Keyboard Fix: This script ensures that the game "grabs" your 
+           keyboard focus as soon as you click anywhere on the page.
+        */
+        window.onclick = function() {
+            document.getElementById('game-container').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-container').focus();
+        };
+    </script>
+
+</body>
+</html>
