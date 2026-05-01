@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Freak Circus - Game Only</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* This container acts as a 'window' to crop the website */
+        .game-wrapper {
+            width: 960px;  /* Adjust this to the width of the game */
+            height: 600px; /* Adjust this to the height of the game */
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #444;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+        }
+
+        /* This shifts the website inside the window to hide the header/sidebar */
+        iframe {
+            position: absolute;
+            
+            /* ADJUST THESE NUMBERS TO CENTER THE GAME */
+            top: -150px;   /* Moves the website UP to hide the header */
+            left: -20px;   /* Moves the website LEFT to hide side margins */
+            
+            width: 1200px; /* The total width of the original website */
+            height: 1000px; /* The total height of the original website */
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <iframe 
+            src="https://thefreakcircusgame.com/the-freak-circus/" 
+            scrolling="no">
+        </iframe>
+    </div>
+
+</body>
+</html>
