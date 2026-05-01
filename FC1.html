@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Freak Circus - Game Box</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000; /* Dark background to blend with the game */
+        }
+
+        /* The specific 638x356 box */
+        .game-box {
+            width: 638px;
+            height: 356px;
+            overflow: hidden; /* This crops everything outside the 638x356 area */
+            position: relative;
+            border: 2px solid #444;
+            background-color: #111;
+        }
+
+        /* The Iframe containing the Itch.io page */
+        .game-iframe {
+            width: 1000px;  /* Larger width to fit the itch layout */
+            height: 800px; /* Larger height to find the game window */
+            position: absolute;
+            border: none;
+
+            /* ZOOM & ALIGNMENT SETTINGS */
+            /* Scale: Adjusts the zoom level */
+            /* Translate: X moves left/right, Y moves up/down */
+            /* These settings are tuned to center the "The Freak Circus" game area */
+            transform: scale(1.15) translate(-160px, -100px);
+            transform-origin: 0 0;
+        }
+
+        /* Instructions overlay (Optional - disappears when game is clicked) */
+        .click-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255,255,255,0.5);
+            font-family: sans-serif;
+            font-size: 10px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+        <iframe 
+            src="https://garula.itch.io/the-freak-circus" 
+            class="game-iframe"
+            scrolling="no">
+        </iframe>
+        <div class="click-hint">638x356 View</div>
+    </div>
+
+</body>
+</html>
