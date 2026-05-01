@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Freak Circus - Game Only</title>
+    <style>
+        /* Dark background to make the game pop */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0b0b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        /* This is the window set to your exact game dimensions */
+        .game-view-window {
+            width: 911px;
+            height: 648px;
+            overflow: hidden;
+            position: relative;
+            border: 4px solid #333;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            background-color: #000;
+        }
+
+        /* This positions the website inside the window */
+        iframe {
+            position: absolute;
+            
+            /* These settings "aim" the window at the game */
+            top: -235px;  /* Moves the page up to hide the header/title */
+            left: -135px; /* Moves the page left to align the game canvas */
+            
+            /* We set the width larger so the website layout doesn't collapse */
+            width: 1200px; 
+            height: 1000px;
+            border: none;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            color: #555;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-view-window">
+        <iframe 
+            src="https://thefreakcircusgame.com/the-freak-circus/" 
+            scrolling="no">
+        </iframe>
+    </div>
+
+    <div class="controls">
+        Press F11 for Fullscreen Mode
+    </div>
+
+</body>
+</html>
