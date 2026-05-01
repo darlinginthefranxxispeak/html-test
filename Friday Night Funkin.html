@@ -1,50 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FNF</title>
+    <title>Google Docs - Research Paper</title>
     <style>
-        /* Removes all borders and scrollbars */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        /* Makes the game box fill the entire browser window */
-        iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-            display: block;
-        }
+        body { background: #f3f3f3; font-family: Arial; text-align: center; padding-top: 50px; }
+        .btn { padding: 20px; background: #4285f4; color: white; border: none; cursor: pointer; border-radius: 5px; }
     </style>
 </head>
 <body>
-
-    <iframe 
-        id="fnf-game"
-        src="https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857" 
-        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
-        allowfullscreen="true">
-    </iframe>
+    <h1>Unit 4: Advanced Bibliography</h1>
+    <p>Click below to open the research resources.</p>
+    <button class="btn" onclick="openGame()">Open Resource</button>
 
     <script>
-        // Rhythm game fix: This ensures the game hears your arrow keys
-        // as soon as you click the screen.
-        window.onclick = function() {
-            document.getElementById('fnf-game').focus();
-        };
-        
-        // Auto-focus on load
-        window.onload = function() {
-            document.getElementById('fnf-game').focus();
-        };
+    function openGame() {
+        var win = window.open();
+        var url = "https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857";
+        var iframe = win.document.createElement('iframe');
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.style.position = "fixed";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.src = url;
+        win.document.body.appendChild(iframe);
+        win.document.body.style.margin = "0";
+    }
     </script>
-
 </body>
 </html>
