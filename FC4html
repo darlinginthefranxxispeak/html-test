@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* This is your exact 638x356 box */
+        .game-window {
+            width: 638px;
+            height: 356px;
+            overflow: hidden; 
+            position: relative;
+            background-color: #000;
+            border: 2px solid #333;
+            margin: 20px auto;
+        }
+
+        /* The Iframe */
+        iframe {
+            width: 1000px;  /* Standard width to trigger the desktop site */
+            height: 1000px; /* Tall height to capture the whole page */
+            position: absolute;
+            border: none;
+
+            /* ZOOM & ALIGNMENT */
+            /* Scale(1.4) zooms in significantly */
+            /* Translate (-180px, -120px) centers the game area in your box */
+            transform: scale(1.4);
+            transform-origin: 0 0;
+            left: -180px; 
+            top: -120px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-window">
+        <iframe 
+            src="https://garula.itch.io/the-freak-circus" 
+            /* These 'allow' tags are REQUIRED for the game to actually load and run */
+            allow="autoplay; gamepad; keyboard-tap; fullscreen; accelerated-video-decode"
+            scrolling="no">
+        </iframe>
+    </div>
+
+    <p style="color: #666; text-align: center; font-family: sans-serif; font-size: 12px;">
+        Note: You must click the red "Run Game" button inside the box to load the circus.
+    </p>
+
+</body>
+</html>
