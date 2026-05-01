@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Freak Circus - Fullscreen View</title>
+    <style>
+        /* This removes all margins and scrollbars from the browser edge */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Black background to match the circus theme */
+        }
+
+        /* This forces the game container to fill the entire screen */
+        .game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- We point the iframe directly to the itch.io game page -->
+        <iframe 
+            src="https://garula.itch.io/the-freak-circus" 
+            allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope; fullscreen" 
+            allowfullscreen="true" 
+            msallowfullscreen="true" 
+            mozallowfullscreen="true" 
+            webkitallowfullscreen="true">
+        </iframe>
+    </div>
+
+</body>
+</html>
