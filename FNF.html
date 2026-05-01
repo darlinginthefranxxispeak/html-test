@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friday Night Funkin
+    <style>
+        /* Removes all borders and scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Makes the game box fill the entire browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe 
+        id="fnf-game"
+        src="https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // Rhythm game fix: This ensures the game hears your arrow keys
+        // as soon as you click the screen.
+        window.onclick = function() {
+            document.getElementById('fnf-game').focus();
+        };
+        
+        // Auto-focus on load
+        window.onload = function() {
+            document.getElementById('fnf-game').focus();
+        };
+    </script>
+
+</body>
+</html>
