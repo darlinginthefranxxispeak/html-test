@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cowtastic Cafe</title>
+    <style>
+        /* Removes all margins and hides the browser scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Dark background matches most game themes */
+        }
+
+        /* Forces the game container to fill every pixel of the browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific link you provided -->
+    <iframe 
+        id="game-player"
+        src="https://html-classic.itch.zone/html/8226134/index.html?v=173231367" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        /* 
+           This script ensures the game "captures" your keyboard 
+           (for Arrow keys or WASD) as soon as you click the page.
+        */
+        window.onclick = function() {
+            document.getElementById('game-player').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-player').focus();
+        };
+    </script>
+
+</body>
+</html>
