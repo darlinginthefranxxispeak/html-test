@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Freak Circus - Play Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden; /* Prevents scrollbars around the game */
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #bc0000;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-family: 'Creepster', cursive;
+            font-size: 2rem;
+            color: #bc0000;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(188, 0, 0, 0.5);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #bc0000;
+        }
+
+        /* Game Container */
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding-top: 70px; /* Space for the header */
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        /* Fullscreen Overlay Message (Mobile) */
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; }
+            .logo { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">THE FREAK CIRCUS</a>
+        <nav>
+            <a href="https://store.steampowered.com/" target="_blank">WISHLIST ON STEAM</a>
+            <a href="https://thefreakcircusgame.com/" target="_blank">OFFICIAL SITE</a>
+        </nav>
+    </header>
+
+    <div id="game-container">
+        <!-- This embeds the actual game logic from the itch.io server -->
+        <iframe 
+            src="https://html-classic.itch.zone/html/14952168/index.html" 
+            allow="autoplay; fullscreen; keyboard" 
+            allowfullscreen="" 
+            scrolling="no">
+        </iframe>
+    </div>
+
+</body>
+</html>
