@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravager</title>
+    <style>
+        /* This hides the browser's margins and scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Black background to help focus on the game */
+        }
+
+        /* This forces the game box to fill the entire window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Using the specific direct link -->
+    <iframe 
+        id="game-frame"
+        src="https://html-classic.itch.zone/html/13379317/index.html" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // This is the "focus grabber" to ensure the keyboard works
+        // without needing to click the game.
+        window.onclick = function() {
+            document.getElementById('game-frame').focus();
+        };
+
+        window.onload = function() {
+            document.getElementById('game-frame').focus();
+        };
+    </script>
+
+</body>
+</html>
