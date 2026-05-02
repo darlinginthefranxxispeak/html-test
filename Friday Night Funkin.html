@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game View - Fullscreen</title>
+    <style>
+        /* Removes browser borders and prevents scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Forces the game window to fill every pixel of the browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe 
+        id="game-player"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // The URL of your game
+        const gameUrl = "https://html-classic.itch.zone/html/15895537/index.html";
+
+        // 1. Define the HTML content we want inside the blob
+        // This creates a nested iframe inside the blob to help mask the source
+        const blobContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${gameUrl}" allowfullscreen="true" allow="autoplay; fullscreen; keyboard-quotas; gamepad; accelerometer; gyroscope"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 2. Create the Blob object
+        const blob = new Blob([blobContent], { type: 'text/html' });
+
+        // 3. Create a local URL for that Blob
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Set the main iframe's source to the Blob URL
+        const iframe = document.getElementById('game-player');
+        iframe.src = blobUrl;
+
+        /* Keyboard Fix: Ensures focus on click */
+        window.onclick = function() {
+            iframe.focus();
+        };
+
+        window.onload = function() {
+            iframe.focus();
+        };
+    </script>
+
+</body>
+</html>
