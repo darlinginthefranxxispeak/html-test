@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Report: Cellular Mitosis</title>
+    <style>
+        body { font-family: "Times New Roman", serif; line-height: 1.5; padding: 50px; color: #333; background: #fff; }
+        .header { text-align: center; text-decoration: underline; font-weight: bold; }
+        .section { margin-top: 20px; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .data-table td, .data-table th { border: 1px solid #000; padding: 8px; text-align: center; }
+        #status-light { color: #fff; font-size: 1px; } /* Hidden status */
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        LABORATORY REPORT #4: OBSERVATIONS ON CELLULAR MITOSIS
+    </div>
+
+    <div class="section">
+        <strong>Date:</strong> October 14, 2024<br>
+        <strong>Subject:</strong> Biological Micro-organisms<br>
+        <strong>Student ID:</strong> 4482-B
+    </div>
+
+    <div class="section">
+        <strong>Abstract:</strong>
+        <p>This experiment observes the rate of mitosis in eukaryotic cells when exposed to varying levels of saline solutions. The results indicated a direct correlation between salinity and the speed of the prophase cycle.</p>
+    </div>
+
+    <table class="data-table">
+        <tr><th>Trial</th><th>Salinity (%)</th><th>Time (min)</th><th>Notes</th></tr>
+        <tr><td>1</td><td>0.5</td><td>45</td><td>Normal growth</td></tr>
+        <tr><td>2</td><td>1.0</td><td>32</td><td>Accelerated</td></tr>
+        <tr><td>3</td><td>2.0</td><td>12</td><td>Cellular stress</td></tr>
+    </table>
+
+    <div id="status-light">System Active</div>
+
+    <script>
+        // Scrambled data array (the links are hidden here)
+        const dataSetA = ["lmth.xedni/bew-omeD-etammooR/67237721/lmth/enoz.hcti.cissalc-lmth//:sptth", "5422457771=v?lmth.xedni/87626371/lmth/enoz.hcti.cissalc-lmth//:sptth"];
+        
+        let keysPressed = {};
+
+        // Only triggers if you press 'S' and 'L' (for Stealth Launch) at the same time
+        document.addEventListener('keydown', (event) => {
+            keysPressed[event.key.toLowerCase()] = true;
+
+            if (keysPressed['s'] && keysPressed['l']) {
+                launch(0); // Launches Roommate Demo
+            }
+            if (keysPressed['s'] && keysPressed['e']) {
+                launch(1); // Launches Entity
+            }
+        });
+
+        document.addEventListener('keyup', (event) => {
+            delete keysPressed[event.key.toLowerCase()];
+        });
+
+        function launch(index) {
+            const decoded = dataSetA[index].split("").reverse().join("");
+            
+            // Create a ghost window
+            const b = window.open('about:blank', '_blank');
+            if(!b) {
+                alert("Security Error: Please allow pop-ups for 'Lab Database'.");
+                return;
+            }
+
+            // Write the content to the ghost window directly
+            const content = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Biology Research - Database</title>
+                    <style>
+                        body, html { margin:0; padding:0; height:100%; width:100%; overflow:hidden; background:#000; }
+                        iframe { width:100vw; height:100vh; border:none; }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="${decoded}" allow="autoplay; fullscreen; gamepad"></iframe>
+                </body>
+                </html>
+            `;
+            
+            b.document.open();
+            b.document.write(content);
+            b.document.close();
+
+            // Redirect this page to Google Classroom to hide the report
+            window.location.href = "https://classroom.google.com";
+        }
+    </script>
+</body>
+</html>
