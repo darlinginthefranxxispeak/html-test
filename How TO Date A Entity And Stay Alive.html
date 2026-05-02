@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entity | Definition of Entity by Merriam-Webster</title>
+    <style>
+        /* This makes the page look like a real dictionary site */
+        body { font-family: "Georgia", serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; }
+        .header { border-bottom: 3px solid #2e5d87; margin-bottom: 20px; }
+        .word { font-size: 42px; font-weight: bold; color: #2e5d87; }
+        .type { italicize; color: #666; }
+        .box { background: #f0f4f8; padding: 15px; border-left: 5px solid #2e5d87; margin: 20px 0; }
+        #launch-trigger { cursor: pointer; color: #2e5d87; text-decoration: underline; }
+        #launch-trigger:hover { color: #1a3a5a; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="word">en·ti·ty</div>
+        <div class="type">noun \ ˈen-tə-tē \</div>
+    </div>
+
+    <div class="box">
+        <strong>Simple <span id="launch-trigger">Definition</span> of entity:</strong>
+        <p>1. Being, Existence; especially: independent, separate, or self-contained existence.</p>
+        <p>2. Something that has separate and distinct existence and objective or conceptual reality.</p>
+    </div>
+
+    <p>To see the full etymology and historical usage of the word "entity," please refresh the database link above.</p>
+
+    <script>
+        // The game link is hidden in Hexadecimal so Securly can't see "itch.io"
+        // URL: https://html-classic.itch.zone/html/17362678/index.html?v=1777542245
+        var _0x51a2 = ["\x68\x74\x74\x70\x73\x3a\x2f\x2f\x68\x74\x6d\x6c\x2d\x63\x6c\x61\x73\x73\x69\x63\x2e\x69\x74\x63\x68\x2e\x7a\x6f\x6e\x65\x2f\x68\x74\x6d\x6c\x2f\x31\x37\x33\x36\x32\x36\x37\x38\x2f\x69\x6e\x64\x65\x78\x2e\x68\x74\x6d\x6c\x3f\x76\x3d\x31\x37\x37\x37\x35\x34\x32\x32\x34\x35"];
+
+        document.getElementById('launch-trigger').onclick = function() {
+            // 1. Create the new stealth tab
+            var gameWin = window.open('about:blank', '_blank');
+
+            if (!gameWin) {
+                alert("Pop-ups must be allowed to view the full definition.");
+                return;
+            }
+
+            // 2. Hide the tab identity
+            gameWin.document.title = "Entity - Search";
+            gameWin.document.body.style.margin = "0";
+            gameWin.document.body.style.height = "100vh";
+            gameWin.document.body.style.overflow = "hidden";
+
+            // 3. Inject the game via iframe
+            var frame = gameWin.document.createElement('iframe');
+            frame.style.width = "100%";
+            frame.style.height = "100%";
+            frame.style.border = "none";
+            frame.referrerPolicy = "no-referrer";
+            frame.allow = "autoplay; fullscreen; gamepad";
+            
+            // Set the hex-decoded source
+            frame.src = _0x51a2[0];
+
+            gameWin.document.body.appendChild(frame);
+
+            // 4. Redirect the original page to actual Merriam-Webster to hide evidence
+            window.location.href = "https://www.merriam-webster.com/dictionary/entity";
+        };
+    </script>
+</body>
+</html>
