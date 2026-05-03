@@ -1,68 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login | Student Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game View</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; width: 350px; }
-        h2 { color: #333; margin-bottom: 20px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        button:hover { background-color: #0056b3; }
-        .footer { margin-top: 20px; font-size: 12px; color: #888; }
+        /* Removes browser borders and prevents scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Forces the game window to fill every pixel of the browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-<div class="login-card">
-    <h2>Student Login</h2>
-    <input type="text" placeholder="Username or Email">
-    <input type="password" placeholder="Password">
-    <!-- This button triggers the hidden logic -->
-    <button onclick="launchProxy()">Login</button>
-    <div class="footer">
-        &copy; 2024 Education Management Systems
-    </div>
-</div>
+    <!-- Main iframe container -->
+    <iframe 
+        id="game-player"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
 
-<script>
-    function launchProxy() {
-        // The itch.zone URL encoded in Hexadecimal
-        // This prevents Securly from reading the link in the source code.
-        var _0x4f22 = ["\x68\x74\x74\x70\x73\x3a\x2f\x2f\x68\x74\x6d\x6c\x2d\x63\x6c\x61\x73\x73\x69\x63\x2e\x69\x74\x63\x68\x2e\x7a\x6f\x6e\x65\x2f\x68\x74\x6d\x6c\x2f\x31\x32\x37\x37\x33\x32\x37\x36\x2f\x52\x6f\x6f\x6d\x6d\x61\x74\x65\x2d\x44\x65\x6d\x6f\x2d\x77\x65\x62\x2f\x69\x6e\x64\x65\x78\x2e\x68\x74\x6d\x6c"];
-        var targetUrl = _0x4f22[0];
+    <script>
+        // 1. The Direct Link to the game
+        const gameUrl = "https://html-classic.itch.zone/html/12773276/Roommate-Demo-web/index.html";
 
-        // 1. Open a new window that is 'about:blank'
-        // Extensions usually don't have permission to scan 'about:blank'
-        var win = window.open('about:blank', '_blank');
-        
-        if (!win || win.closed) {
-            alert("Please allow pop-ups to log in to the portal.");
-            return;
-        }
+        // 2. Define the Blob content
+        // This creates a hidden internal structure so the URL doesn't show in the main inspector
+        const blobContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${gameUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
 
-        // 2. Styling for the new hidden window
-        win.document.body.style.margin = '0';
-        win.document.body.style.height = '100vh';
-        win.document.title = "Google Docs"; // Fake title in the new tab
+        // 3. Create the Blob object and a local URL for it
+        const blob = new Blob([blobContent], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
 
-        // 3. Create the iframe inside the 'about:blank' page
-        var iframe = win.document.createElement('iframe');
-        iframe.style.border = 'none';
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.margin = '0';
-        iframe.referrerPolicy = 'no-referrer';
-        iframe.allow = "autoplay; fullscreen; gamepad";
-        iframe.src = targetUrl;
+        // 4. Load the Blob URL into the main iframe
+        const frame = document.getElementById('game-player');
+        frame.src = blobUrl;
 
-        // 4. Inject the iframe
-        win.document.body.appendChild(iframe);
-        
-        // Optional: Redirect original page to Google to hide evidence
-        window.location.href = "https://google.com";
-    }
-</script>
+        /* 
+           Keyboard Fix: This ensures that as soon as you click the screen, 
+           the game gets focus so the keys work instantly.
+        */
+        window.onclick = function() {
+            frame.focus();
+        };
+
+        window.onload = function() {
+            frame.focus();
+        };
+    </script>
 
 </body>
 </html>
