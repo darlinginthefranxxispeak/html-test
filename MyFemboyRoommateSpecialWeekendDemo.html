@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFRSP DEMO</title>
+    <style>
+        /* Removes all browser borders and prevents scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Forces the game window to fill the entire browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main container for the Blob -->
+    <iframe 
+        id="game-container"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. The specific direct game link
+        const targetUrl = "https://html-classic.itch.zone/html/15207175/MyFemboyRoommate-SpecialWeekend-Demo-web/index.html";
+
+        // 2. Create the internal HTML structure for the Blob
+        const blobHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 3. Convert the HTML string into a Blob object
+        const blob = new Blob([blobHTML], { type: 'text/html' });
+
+        // 4. Create a unique URL for the Blob
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 5. Set the iframe source to the new Blob URL
+        const mainFrame = document.getElementById('game-container');
+        mainFrame.src = blobUrl;
+
+        /* 
+           Focus Script: Ensures that clicking anywhere on the page 
+           gives the keyboard focus to the game immediately.
+        */
+        window.onclick = function() {
+            mainFrame.focus();
+        };
+
+        window.onload = function() {
+            mainFrame.focus();
+        };
+    </script>
+
+</body>
+</html>
