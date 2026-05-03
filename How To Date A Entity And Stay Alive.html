@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTDAEASA</title>
+    <style>
+        /* Removes browser borders and scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Forces the game window to fill the entire browser screen */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main container that will hold the Blob -->
+    <iframe 
+        id="game-frame"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. The specific game source link
+        const targetUrl = "https://html-classic.itch.zone/html/17362678/index.html";
+
+        // 2. Create the HTML content that will be "hidden" inside the Blob
+        const blobHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 3. Generate the Blob and the temporary Blob URL
+        const blob = new Blob([blobHTML], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Inject the Blob URL into the main iframe
+        const frame = document.getElementById('game-frame');
+        frame.src = blobUrl;
+
+        /* 
+           Focus Script: Ensures that as soon as you click the page, 
+           the game gets keyboard focus so your inputs work immediately.
+        */
+        window.onclick = function() {
+            frame.focus();
+        };
+
+        window.onload = function() {
+            frame.focus();
+        };
+    </script>
+
+</body>
+</html>
