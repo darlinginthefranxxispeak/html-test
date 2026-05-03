@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBF DEMO</title>
+    <style>
+        /* Removes browser borders and scrollbars */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Forces the game window to fill the entire browser screen */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This iframe will hold the Blob -->
+    <iframe 
+        id="main-game-frame"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. The direct game link
+        const gameUrl = "https://html-classic.itch.zone/html/12905910-1196083/HauntedByFemboy-Demo-web/index.html";
+
+        // 2. The internal HTML content for the Blob
+        const blobHTML = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${gameUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 3. Create the Blob and the Blob URL
+        const blob = new Blob([blobHTML], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Set the main iframe source to the Blob URL
+        const gameFrame = document.getElementById('main-game-frame');
+        gameFrame.src = blobUrl;
+
+        /* 
+           Focus Script: Ensures that as soon as you click the page, 
+           the game gets keyboard focus so your inputs work.
+        */
+        window.onclick = function() {
+            gameFrame.focus();
+        };
+
+        window.onload = function() {
+            gameFrame.focus();
+        };
+    </script>
+
+</body>
+</html>
