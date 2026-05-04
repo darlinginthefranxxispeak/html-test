@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FNF</title>
+    <title>Game - Fullscreen</title>
     <style>
-        /* Removes all borders and scrollbars */
         body, html {
             margin: 0;
             padding: 0;
@@ -14,8 +13,6 @@
             overflow: hidden;
             background-color: #000;
         }
-
-        /* Makes the game box fill the entire browser window */
         iframe {
             width: 100vw;
             height: 100vh;
@@ -26,19 +23,20 @@
 </head>
 <body>
 
-    <!-- The iframe starts blank; the Blob script will fill it -->
     <iframe 
-        id="fnf-game"
+        id="game-frame"
         src="about:blank" 
         allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
         allowfullscreen="true">
     </iframe>
 
     <script>
-        // 1. The original game source link
-        const gameSource = "https://html-classic.itch.zone/html/16944508-1582492/index.html?v=1774567857";
+        /* 
+           NOTE: I removed ".zip" from the end of your link. 
+           If you leave the .zip, the game won't load and will only download.
+        */
+        const gameUrl = "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r142/";
 
-        // 2. Create the HTML content that will live inside the Blob
         const blobHTML = `
             <!DOCTYPE html>
             <html>
@@ -49,26 +47,23 @@
                 </style>
             </head>
             <body>
-                <iframe src="${gameSource}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+                <iframe src="${gameUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
             </body>
             </html>
         `;
 
-        // 3. Create the Blob and the Blob URL
         const blob = new Blob([blobHTML], { type: 'text/html' });
         const blobUrl = URL.createObjectURL(blob);
 
-        // 4. Inject the Blob URL into our main iframe
-        const gameIframe = document.getElementById('fnf-game');
-        gameIframe.src = blobUrl;
+        const frame = document.getElementById('game-frame');
+        frame.src = blobUrl;
 
-        // Rhythm game fix: Ensures the game grabs keyboard focus
+        // Focus fix for controls
         window.onclick = function() {
-            gameIframe.focus();
+            frame.focus();
         };
-        
         window.onload = function() {
-            gameIframe.focus();
+            frame.focus();
         };
     </script>
 
