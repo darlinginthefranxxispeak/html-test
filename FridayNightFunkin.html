@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game - Fullscreen</title>
+    <!-- This meta tag is the first step to killing the referrer -->
+    <meta name="referrer" content="no-referrer">
+    <title>Game Loader</title>
     <style>
         body, html {
             margin: 0;
@@ -31,16 +33,16 @@
     </iframe>
 
     <script>
-        /* 
-           NOTE: I removed ".zip" from the end of your link. 
-           If you leave the .zip, the game won't load and will only download.
-        */
-        const gameUrl = "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r142/";
+        // Use the folder path + index.html
+        const gameUrl = "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r142.zip";
 
+        // This Blob contains a 'Referrer-Policy' instruction 
+        // to stop Newgrounds from blocking the 404.
         const blobHTML = `
             <!DOCTYPE html>
             <html>
             <head>
+                <meta name="referrer" content="no-referrer">
                 <style>
                     body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
                     iframe { width: 100vw; height: 100vh; border: none; }
@@ -58,11 +60,8 @@
         const frame = document.getElementById('game-frame');
         frame.src = blobUrl;
 
-        // Focus fix for controls
+        // Ensure the game gets keyboard focus
         window.onclick = function() {
-            frame.focus();
-        };
-        window.onload = function() {
             frame.focus();
         };
     </script>
