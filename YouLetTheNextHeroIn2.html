@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Let The Next Hero In 2</title>
+    <style>
+        /* Removes browser borders and prevents scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Forces the game window to fill every pixel of the browser window */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main container for the Blob content -->
+    <iframe 
+        id="game-loader"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. The specific game source link
+        const gameSource = "https://html-classic.itch.zone/html/8477633/index.html?v=1732313630";
+
+        // 2. Define the HTML content that will be "hidden" inside the Blob
+        const blobContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${gameSource}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 3. Create the Blob object and a local URL for it
+        const blob = new Blob([blobContent], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Set the main iframe's source to the Blob URL
+        const frame = document.getElementById('game-loader');
+        frame.src = blobUrl;
+
+        /* 
+           Keyboard Fix: This ensures that the game "grabs" your 
+           keyboard focus as soon as you click anywhere on the page.
+        */
+        window.onclick = function() {
+            frame.focus();
+        };
+
+        window.onload = function() {
+            frame.focus();
+        };
+    </script>
+
+</body>
+</html>
