@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- This meta tag is the first step to killing the referrer -->
-    <meta name="referrer" content="no-referrer">
-    <title>Game Loader</title>
+    <title>Amber Quest</title>
     <style>
+        /* Removes all browser borders and prevents scrolling */
         body, html {
             margin: 0;
             padding: 0;
@@ -15,6 +14,8 @@
             overflow: hidden;
             background-color: #000;
         }
+
+        /* Forces the game window to fill the entire browser window */
         iframe {
             width: 100vw;
             height: 100vh;
@@ -25,43 +26,51 @@
 </head>
 <body>
 
+    <!-- Main container for the Blob content -->
     <iframe 
-        id="game-frame"
+        id="game-loader"
         src="about:blank" 
         allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
         allowfullscreen="true">
     </iframe>
 
     <script>
-        // Use the folder path + index.html
-        const gameUrl = "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r142.zip";
+        // 1. The specific game source link provided
+        const gameSource = "https://html-classic.itch.zone/html/5187726/index.html?v=1732313170";
 
-        // This Blob contains a 'Referrer-Policy' instruction 
-        // to stop Newgrounds from blocking the 404.
-        const blobHTML = `
+        // 2. Create the internal HTML structure for the Blob
+        const blobContent = `
             <!DOCTYPE html>
             <html>
             <head>
-                <meta name="referrer" content="no-referrer">
                 <style>
                     body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
                     iframe { width: 100vw; height: 100vh; border: none; }
                 </style>
             </head>
             <body>
-                <iframe src="${gameUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+                <iframe src="${gameSource}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
             </body>
             </html>
         `;
 
-        const blob = new Blob([blobHTML], { type: 'text/html' });
+        // 3. Create the Blob object and a local URL for it
+        const blob = new Blob([blobContent], { type: 'text/html' });
         const blobUrl = URL.createObjectURL(blob);
 
-        const frame = document.getElementById('game-frame');
+        // 4. Set the main iframe's source to the new Blob URL
+        const frame = document.getElementById('game-loader');
         frame.src = blobUrl;
 
-        // Ensure the game gets keyboard focus
+        /* 
+           Keyboard Fix: Ensures the game "grabs" your keyboard focus 
+           as soon as you click anywhere on the screen.
+        */
         window.onclick = function() {
+            frame.focus();
+        };
+
+        window.onload = function() {
             frame.focus();
         };
     </script>
