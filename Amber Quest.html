@@ -26,11 +26,11 @@
 </head>
 <body>
 
-    <!-- Main container for the Blob content -->
+    <!-- Main container (gamepad permission removed) -->
     <iframe 
         id="game-loader"
         src="about:blank" 
-        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allow="autoplay; fullscreen; keyboard-quotas" 
         allowfullscreen="true">
     </iframe>
 
@@ -38,7 +38,7 @@
         // 1. The specific game source link provided
         const gameSource = "https://html-classic.itch.zone/html/5187726/index.html?v=1732313170";
 
-        // 2. Create the internal HTML structure for the Blob
+        // 2. Create the internal HTML structure for the Blob (gamepad permission removed)
         const blobContent = `
             <!DOCTYPE html>
             <html>
@@ -49,7 +49,7 @@
                 </style>
             </head>
             <body>
-                <iframe src="${gameSource}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+                <iframe src="${gameSource}" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
             </body>
             </html>
         `;
