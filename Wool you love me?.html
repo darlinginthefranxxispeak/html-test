@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wool you love me?</title>
+    <style>
+        /* Fill every pixel of the browser window */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Fullscreen game frame */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- The container for the Blob content -->
+    <iframe 
+        id="game-loader"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. The original game link with the version key included
+        const gameSource = "https://html-classic.itch.zone/html/15716963-1586916/index.html?v=1732313170";
+
+        // 2. Create the HTML code that will live inside the Blob
+        const blobContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${gameSource}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 3. Generate the Blob object and the temporary URL
+        const blob = new Blob([blobContent], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Point the main iframe to the new Blob URL
+        const frame = document.getElementById('game-loader');
+        frame.src = blobUrl;
+
+        /* 
+           Keyboard Focus Fix:
+           Ensures that clicking the screen instantly gives the game control
+           of the keyboard so arrow keys and WASD work.
+        */
+        window.onclick = function() {
+            frame.focus();
+        };
+
+        window.onload = function() {
+            frame.focus();
+        };
+    </script>
+
+</body>
+</html>
