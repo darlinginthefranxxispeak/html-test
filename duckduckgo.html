@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        /* Fill every pixel of the browser window */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #fff; /* White background for search engine */
+        }
+
+        /* Fullscreen frame */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main container for the Blob content -->
+    <iframe 
+        id="content-frame"
+        src="about:blank" 
+        allow="autoplay; fullscreen; keyboard-quotas" 
+        allowfullscreen="true">
+    </iframe>
+
+    <script>
+        // 1. The target URL
+        const targetUrl = "https://duckduckgo.com/";
+
+        // 2. Create the HTML code for the Blob (gamepad removed)
+        const blobContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #fff; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        // 3. Generate the Blob object and the temporary URL
+        const blob = new Blob([blobContent], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 4. Point the main iframe to the new Blob URL
+        const frame = document.getElementById('content-frame');
+        frame.src = blobUrl;
+
+        /* Focus Fix */
+        window.onclick = function() {
+            frame.focus();
+        };
+    </script>
+
+</body>
+</html>
