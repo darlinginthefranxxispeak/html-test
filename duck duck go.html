@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked Browser</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #fff; }
+        iframe { width: 100vw; height: 100vh; border: none; display: block; }
+    </style>
+</head>
+<body>
+
+    <iframe id="proxy-frame" src="about:blank" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
+
+    <script>
+        // Using a search proxy link that doesn't block iframes
+        const targetUrl = "https://www.bing.com/search?q=duckduckgo";
+
+        const blobContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; }
+                    iframe { width: 100vw; height: 100vh; border: none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
+            </body>
+            </html>
+        `;
+
+        const blob = new Blob([blobContent], { type: 'text/html' });
+        const blobUrl = URL.createObjectURL(blob);
+        document.getElementById('proxy-frame').src = blobUrl;
+    </script>
+</body>
+</html>
