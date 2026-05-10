@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Dashboard</title>
+    <style>
+        /* Styling for the launcher page */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #0f0f0f;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            text-align: center;
+            padding: 40px;
+            background: #1a1a1a;
+            border-radius: 16px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        button {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: 0.2s ease;
+        }
+        button:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+        p { color: #888; margin-top: 15px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="launcher">
+        <h1>Secure Browser</h1>
+        <button id="launch-btn">Launch Environment</button>
+        <p>Gamepad: <span style="color: #ff4444;">Disabled</span></p>
+    </div>
+
+    <script>
+        document.getElementById('launch-btn').onclick = function() {
+            // 1. The URL that allows iframing (Google iGU)
+            const targetUrl = "https://www.google.com/search?igu=1";
+
+            // 2. The Blob content (The "Persistent" environment)
+            const blobHTML = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta name="referrer" content="no-referrer">
+                    <style>
+                        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #fff; }
+                        iframe { width: 100vw; height: 100vh; border: none; position: fixed; top: 0; left: 0; }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
+                </body>
+                </html>
+            `;
+
+            // 3. Create the Blob
+            const blob = new Blob([blobHTML], { type: 'text/html' });
+            const blobUrl = URL.createObjectURL(blob);
+
+            // 4. STAY BLOBBED: Replace current page content with a full-screen iframe pointing to the blob
+            // This bypasses the pop-up blocker and keeps the URL hidden
+            document.body.innerHTML = `
+                <iframe src="${blobUrl}" style="position:fixed; top:0; left:0; width:100%; height:100%; border:none; margin:0; padding:0; z-index:999999;"></iframe>
+            `;
+            
+            // Lock the body to prevent scrollbars
+            document.body.style.overflow = "hidden";
+        };
+    </script>
+
+</body>
+</html>
