@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MFRSP DEMO</title>
+    <title>Game View - Fullscreen</title>
     <style>
         /* Removes all browser borders and prevents scrolling */
         body, html {
@@ -26,11 +26,11 @@
 </head>
 <body>
 
-    <!-- Main container for the Blob -->
+    <!-- Main container for the Blob content -->
     <iframe 
-        id="game-container"
+        id="game-player"
         src="about:blank" 
-        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allow="autoplay; fullscreen; keyboard-quotas" 
         allowfullscreen="true">
     </iframe>
 
@@ -39,6 +39,7 @@
         const targetUrl = "https://html-classic.itch.zone/html/15207175/MyFemboyRoommate-SpecialWeekend-Demo-web/index.html";
 
         // 2. Create the internal HTML structure for the Blob
+        // Gamepad support has been REMOVED from the allow attribute below
         const blobHTML = `
             <!DOCTYPE html>
             <html>
@@ -49,7 +50,7 @@
                 </style>
             </head>
             <body>
-                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
             </body>
             </html>
         `;
@@ -61,11 +62,11 @@
         const blobUrl = URL.createObjectURL(blob);
 
         // 5. Set the iframe source to the new Blob URL
-        const mainFrame = document.getElementById('game-container');
+        const mainFrame = document.getElementById('game-player');
         mainFrame.src = blobUrl;
 
         /* 
-           Focus Script: Ensures that clicking anywhere on the page 
+           Keyboard Fix: Ensures that clicking anywhere on the page 
            gives the keyboard focus to the game immediately.
         */
         window.onclick = function() {
