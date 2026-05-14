@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MFR DEMO/title>
+    <title>My Femboy Roommate Demo</title>
     <style>
-        /* Removes browser borders and prevents scrolling */
+        /* Removes all browser borders and prevents scrolling */
         body, html {
             margin: 0;
             padding: 0;
@@ -15,7 +15,7 @@
             background-color: #000;
         }
 
-        /* Forces the game window to fill every pixel of the browser window */
+        /* Forces the game window to fill the entire browser window */
         iframe {
             width: 100vw;
             height: 100vh;
@@ -26,21 +26,21 @@
 </head>
 <body>
 
-    <!-- Main iframe container -->
+    <!-- Main container for the Blob content -->
     <iframe 
         id="game-player"
         src="about:blank" 
-        allow="autoplay; fullscreen; keyboard-quotas; gamepad" 
+        allow="autoplay; fullscreen; keyboard-quotas" 
         allowfullscreen="true">
     </iframe>
 
     <script>
-        // 1. The Direct Link to the game
-        const gameUrl = "https://html-classic.itch.zone/html/12773276/Roommate-Demo-web/index.html";
+        // 1. The specific game source link
+        const targetUrl = "https://html-classic.itch.zone/html/12773276/Roommate-Demo-web/index.html";
 
-        // 2. Define the Blob content
-        // This creates a hidden internal structure so the URL doesn't show in the main inspector
-        const blobContent = `
+        // 2. Create the internal HTML structure for the Blob
+        // Gamepad support has been REMOVED from the allow attribute
+        const blobHTML = `
             <!DOCTYPE html>
             <html>
             <head>
@@ -50,29 +50,31 @@
                 </style>
             </head>
             <body>
-                <iframe src="${gameUrl}" allow="autoplay; fullscreen; keyboard-quotas; gamepad" allowfullscreen="true"></iframe>
+                <iframe src="${targetUrl}" allow="autoplay; fullscreen; keyboard-quotas" allowfullscreen="true"></iframe>
             </body>
             </html>
         `;
 
-        // 3. Create the Blob object and a local URL for it
-        const blob = new Blob([blobContent], { type: 'text/html' });
+        // 3. Convert the HTML string into a Blob object
+        const blob = new Blob([blobHTML], { type: 'text/html' });
+
+        // 4. Create a unique URL for the Blob
         const blobUrl = URL.createObjectURL(blob);
 
-        // 4. Load the Blob URL into the main iframe
-        const frame = document.getElementById('game-player');
-        frame.src = blobUrl;
+        // 5. Set the iframe source to the new Blob URL
+        const mainFrame = document.getElementById('game-player');
+        mainFrame.src = blobUrl;
 
         /* 
            Keyboard Fix: This ensures that as soon as you click the screen, 
-           the game gets focus so the keys work instantly.
+           the game gets focus so the keyboard works instantly.
         */
         window.onclick = function() {
-            frame.focus();
+            mainFrame.focus();
         };
 
         window.onload = function() {
-            frame.focus();
+            mainFrame.focus();
         };
     </script>
 
